@@ -17,6 +17,7 @@ import { BasicHttpClient } from '@service/basic/basic-http-client';
 import { BASIC_HTTP_HANDLER, MyHttpHandler } from '@service/basic/basic-http-handler';
 import { EmployeeService } from '@service/employee.service';
 import { UofxPluginApiService } from '@uofx/plugin/api';
+import { CustomerManagementComponent } from './customer-management/customer-management.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { UofxPluginApiService } from '@uofx/plugin/api';
       { path: '', redirectTo: 'container', pathMatch: 'full' },
       { path: 'container', component: PluginWebAdminContainerLayoutPage },
       { path: 'customer-complete', component: PluginWebAdminCustomerManagementCompletePage },
+      { path: 'customer', component: CustomerManagementComponent },
       {
         path: 'sub',
         loadChildren: () => import('./sub-layout/admin-sub-layout.module').then(m => m.PluginWebAdminSubLayoutModule),
@@ -47,7 +49,8 @@ import { UofxPluginApiService } from '@uofx/plugin/api';
   exports: [],
   declarations: [
     PluginWebAdminContainerLayoutPage,
-    PluginWebAdminCustomerManagementCompletePage
+    PluginWebAdminCustomerManagementCompletePage,
+    CustomerManagementComponent
   ],providers: [
     { provide: BASIC_HTTP_HANDLER, useClass: MyHttpHandler },
     NorthWindService,

@@ -28,6 +28,12 @@
           "name": "客戶管理(完成品)",
           "icon": "assets/icons/rocket_launch.png",
           "path": "customer-complete"
+        },
+        {
+          "funcId": "CUSTOMERMANAGEMENT",
+          "name": "客戶管理",
+          "icon": "assets/icons/rocket_launch.png",
+          "path": "customer"
         }
       ]
     }
