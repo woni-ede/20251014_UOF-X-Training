@@ -18,6 +18,14 @@
         "defaultCols": 6,
         "defaultRows": 2
       }
+    },
+    {
+      "code": "customerList",
+      "name": "客戶列表",
+      "sizeConfig": {
+        "defaultCols": 4,
+        "defaultRows": 2
+      }
     }
   ],
   "app": []

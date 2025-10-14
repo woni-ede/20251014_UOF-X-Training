@@ -8,6 +8,10 @@
     "exposedModule": "./Panel/User",
     "moduleName": "HelloWorldPanelComponent"
   },
+  "customerList": {
+    "exposedModule": "./Panel/CustomerList",
+    "moduleName": "CustomerListComponent"
+  },
   "appSample": {
     "exposedModule": "./Panel/App",
     "moduleName": "HelloWorldPanelComponent"
