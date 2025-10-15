@@ -9,7 +9,7 @@
 
 import { Component, Input, OnInit } from "@angular/core";
 import { BpmFwWriteComponent, UofxFormFieldLogic, UofxFormTools } from "@uofx/web-components/form";
-import { Settings } from '@uofx/core';
+import { Settings, UofxConsole } from '@uofx/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NorthWindService } from "@service/northwind.service";
 import { UofxDialogController, UofxDialogOptions } from "@uofx/web-components/dialog";
@@ -90,6 +90,7 @@ export class OrderFieldWriteComponent extends BpmFwWriteComponent implements OnI
     }).afterClose.subscribe({
       next: res => {
         /* TODO: 處理回傳參數 */
+        UofxConsole.log('dialog result', res);
       }
     });
   }
