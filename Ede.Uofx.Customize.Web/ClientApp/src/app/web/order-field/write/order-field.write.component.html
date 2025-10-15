@@ -6,6 +6,29 @@
   <uofx-error-block [uofErrorI18nKeys]="errorMessage" [showHeader]="true"></uofx-error-block>
   <!--外掛欄位內容-->
   <uofx-button [mode]="'u-btn-primary'" (click)="showDialog()">開啟商品列表</uofx-button>
+  <form [formGroup]="form" *ngIf="form.value.products?.length  > 0">
+    <p-table [value]="form.get('products').controls" [paginator]="true" [rows]="5"
+    [tableStyle]="{ 'min-width': '50rem' }" formArrayName="products">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>商品名稱</th>
+          <th>庫存</th>
+          <th>價格</th>
+          <th><span uofx-required>數量</span></th>
+        <tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item let-i="rowIndex">
+        <tr [formGroupName]="i">
+          <td>{{ item.value.productName }}</td>
+          <td>{{ item.value.unitsInStock }}</td>
+          <td>{{ item.value.unitPrice }}</td>
+          <td>
+            <p-inputNumber formControlName="quantity" (onFocus)="$event.target.select()"></p-inputNumber>
+          </td>
+        <tr>
+      </ng-template>
+    </p-table>
+  </form>
   <div class="fw-descr" *ngIf="showDescr && descr">
     {{ descr }}
   </div>
