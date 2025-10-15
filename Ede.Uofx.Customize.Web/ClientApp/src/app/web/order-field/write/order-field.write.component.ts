@@ -12,6 +12,8 @@ import { BpmFwWriteComponent, UofxFormFieldLogic, UofxFormTools } from "@uofx/we
 import { Settings } from '@uofx/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NorthWindService } from "@service/northwind.service";
+import { UofxDialogController, UofxDialogOptions } from "@uofx/web-components/dialog";
+import { ProductListComponent } from "./_dialog/product-list/product-list.component";
 // import { YourExProps } from './path/to/your.model';
 
 @Component({
@@ -38,7 +40,8 @@ export class OrderFieldWriteComponent extends BpmFwWriteComponent implements OnI
     private fb: FormBuilder,
     private tools: UofxFormTools,
     private fieldLogic: UofxFormFieldLogic,
-    private northWindServ: NorthWindService
+    private northWindServ: NorthWindService,
+    private dialogCtrl: UofxDialogController
   ) {
     super();
   }
@@ -56,7 +59,7 @@ export class OrderFieldWriteComponent extends BpmFwWriteComponent implements OnI
   /** 初始化form */
   initForm() {
     this.form = this.fb.group({
-      // yourField: [this.value?.yourField, [Validators.required]],
+      products: this.fb.array([])
     });
     this.setFormValue();
   }
@@ -68,7 +71,28 @@ export class OrderFieldWriteComponent extends BpmFwWriteComponent implements OnI
     }
   }
 
-  showDialog() { }
+  showDialog() {
+    /**
+     * 請依照以下步驟完成 dialog function 設定：
+     *
+     * 1. 最上方 import 設定：import { UofxDialogController, UofxDialogOptions } from '@uofx/web-components/dialog';
+     * 2. 在 constructor 中加入：private dialogCtrl: UofxDialogController
+     * 3. 設定要開啟的 component
+     * 4. 設定要帶入的參數
+     * 5. 處理回傳參數
+     *
+     */
+
+    this.dialogCtrl.create(<UofxDialogOptions>{
+      component: ProductListComponent, /* TODO: 要開啟的 component */
+      size: 'large',
+      params: { data: this.form.value.products /* TODO: 要帶入的參數 */ }
+    }).afterClose.subscribe({
+      next: res => {
+        /* TODO: 處理回傳參數 */
+      }
+    });
+  }
 
   /**
    * 表單送出前會呼叫此函式做檢查
