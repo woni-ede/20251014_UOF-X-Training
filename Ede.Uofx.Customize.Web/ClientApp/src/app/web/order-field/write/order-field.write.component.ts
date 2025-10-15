@@ -92,7 +92,7 @@ export class OrderFieldWriteComponent extends BpmFwWriteComponent implements OnI
       next: res => {
         /* TODO: 處理回傳參數 */
         UofxConsole.log('dialog result', res);
-        if(res) this.createFormArray(res);
+        if (res) this.createFormArray(res);
       }
     });
   }
@@ -124,20 +124,37 @@ export class OrderFieldWriteComponent extends BpmFwWriteComponent implements OnI
    */
   checkBeforeSubmit(checkValidator: boolean): Promise<boolean> {
     this.errorMessage = [];
+    let isValid: boolean = true;
+
+    let order = {
+      selectedProducts: this.form.value.products,
+      orderDetails: this.form.value.products.map(product => ({
+        productID: product.productID,
+        quantity: product.quantity,
+        unitPrice: product.unitPrice
+      }))
+    };
+
+
     // 驗證欄位
-    // this.tools.markFormGroup(this.form);
+    this.tools.markFormGroup(this.form);
     // 放在checkBeforeSubmit中，如果是暫存就不需要驗證必填，且清除form control error
-    // this.fieldLogic.checkValidators(checkValidator, this.selfControl, this.form);
+    this.fieldLogic.checkValidators(checkValidator, this.selfControl, this.form);
     // 真正送出欄位值變更的函式
-    this.valueChanges.emit(/* TODO: 要送出的值 */);
+    this.valueChanges.emit(order);
+
+    if (checkValidator) {
+      if (this.form.value.products.length === 0) {
+        this.errorMessage.push(`至少選擇一筆商品。`);
+        isValid = false;
+      } else if (this.form.invalid) {
+        this.errorMessage.push(`請填入商品數量，數量不可小於1。`);
+        isValid = false;
+      }
+    }
 
     return new Promise(resolve => {
-      if (checkValidator) {
-        // 檢查是否有錯誤
-        // this.form.invalid ? resolve(true) : resolve(false);
-      } else {
-        resolve(true);
-      }
+      resolve(isValid);
     });
   }
 }
