@@ -14,6 +14,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NorthWindService } from "@service/northwind.service";
 import { UofxDialogController, UofxDialogOptions } from "@uofx/web-components/dialog";
 import { ProductListComponent } from "./_dialog/product-list/product-list.component";
+import { ProductModel } from "@model/northwind.model";
 // import { YourExProps } from './path/to/your.model';
 
 @Component({
@@ -66,8 +67,8 @@ export class OrderFieldWriteComponent extends BpmFwWriteComponent implements OnI
 
   /** 填入資料 */
   setFormValue() {
-    if (this.value) {
-      // this.form.controls.yourField.setValue(this.value.yourField);
+    if (this.value && this.value.selectedProducts) {
+      this.createFormArray(this.value.selectedProducts);
     }
   }
 
@@ -91,8 +92,29 @@ export class OrderFieldWriteComponent extends BpmFwWriteComponent implements OnI
       next: res => {
         /* TODO: 處理回傳參數 */
         UofxConsole.log('dialog result', res);
+        if(res) this.createFormArray(res);
       }
     });
+  }
+
+  createFormArray(selectedProducts: ProductModel[]) {
+    // 清空 FormArray
+    const formArray = this.form.get('products') as FormArray;
+    formArray.clear();
+
+    selectedProducts.forEach(product => {
+      let group = this.fb.group({
+        productID: [product.productID ?? null],
+        productName: [product.productName ?? null],
+        unitsInStock: [product.unitsInStock ?? null],
+        unitPrice: [product.unitPrice ?? null],
+        quantity: [product.quantity ?? null, [Validators.required, Validators.min(1)]]
+      })
+      formArray.push(group);
+    })
+
+    // 綁定 ParentForm
+    this.fieldLogic.parentFormBinding(this.parentForm, this.selfControl, this.form);
   }
 
   /**
