@@ -68,6 +68,8 @@ export class OrderFieldWriteComponent extends BpmFwWriteComponent implements OnI
     }
   }
 
+  showDialog() { }
+
   /**
    * 表單送出前會呼叫此函式做檢查
    * @param {boolean} checkValidator 按下表單下方按鈕時是否要檢查表單驗證

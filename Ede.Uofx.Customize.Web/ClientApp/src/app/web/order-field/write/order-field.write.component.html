@@ -5,6 +5,7 @@
 <div class="fw-control">
   <uofx-error-block [uofErrorI18nKeys]="errorMessage" [showHeader]="true"></uofx-error-block>
   <!--外掛欄位內容-->
+  <uofx-button [mode]="'u-btn-primary'" (click)="showDialog()">開啟商品列表</uofx-button>
   <div class="fw-descr" *ngIf="showDescr && descr">
     {{ descr }}
   </div>

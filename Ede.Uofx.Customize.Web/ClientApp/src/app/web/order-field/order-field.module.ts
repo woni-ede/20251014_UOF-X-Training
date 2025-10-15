@@ -25,6 +25,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { UofxFormModule } from '@uofx/web-components/form';
 import { OrderFieldWriteComponent } from './write/order-field.write.component';
 import { OrderFieldPropsComponent } from './props/order-field.props.component';
+import { ProductListComponent } from './write/_dialog/product-list/product-list.component';
 
 const UOF_MODULES = [
   UofxFormFieldBaseModule,
@@ -59,7 +60,8 @@ const EMP_SERVICES = [
   ],
   declarations: [
     OrderFieldWriteComponent,
-    OrderFieldPropsComponent
+    OrderFieldPropsComponent,
+    ProductListComponent
   ],
   exports: []
 })
