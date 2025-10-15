@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
 import { TemplateModule } from './web/template/your-field-name.module';
 import { UofxTranslateLoader } from './translate-loader';
 import { UserModule } from './web/pages/user/user.module';
+import { OrderFieldModule } from './web/order-field/order-field.module';
 
 // #region i18n services
 export function I18nHttpLoaderFactory(http: HttpClient) {
@@ -77,6 +78,7 @@ const manifest = require("/src/plugin.manifest.json");
     AdminModule,
     UserModule,
     PageModule,
+    OrderFieldModule
   ],
   providers: [
     { provide: 'BASE_HREF', useFactory: Helper.getBaseHref },
