@@ -12,7 +12,8 @@ const exposes = {
     './Panel/User': './src/app/web/panels/user/hello-world/hello-world.component.ts',
     './OrderFieldComplete': './src/app/web/order-field-complete/order-field-complete.module.ts',
     './Template': './src/app/web/template/your-field-name.module.ts',
-    './Panel/CustomerList': './src/app/web/panels/user/customer-list/customer-list.component.ts'
+    './Panel/CustomerList': './src/app/web/panels/user/customer-list/customer-list.component.ts',
+    './OrderField': './src/app/web/order-field/order-field.module.ts'
   },
   app: {
     // ./Page 名稱固定，為手機端進入點

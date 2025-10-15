@@ -59,6 +59,18 @@
         "minCols": 4,
         "minRows": 1
       }
+    },
+    {
+      "group": "group2",
+      "code": "orderField",
+      "name": "訂單欄位",
+      "icon": "assets/icons/u-plugin-form.svg",
+      "sizeConfig": {
+        "defaultCols": 4,
+        "defaultRows": 1,
+        "minCols": 4,
+        "minRows": 1
+      }
     }
   ]
 }

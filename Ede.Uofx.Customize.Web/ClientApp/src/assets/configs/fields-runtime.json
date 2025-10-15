@@ -25,5 +25,10 @@
     "exposedModule": "./Template",
     "moduleName": "TemplateModule",
     "app": {}
+  },
+  "orderField": {
+    "exposedModule": "./OrderField",
+    "moduleName": "OrderFieldModule",
+    "app": {}
   }
 }
