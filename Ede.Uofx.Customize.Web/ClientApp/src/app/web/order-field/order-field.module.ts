@@ -23,6 +23,8 @@ import { UofxDialogModule } from '@uofx/web-components/dialog';
 import { TableModule } from 'primeng/table';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { UofxFormModule } from '@uofx/web-components/form';
+import { OrderFieldWriteComponent } from './write/order-field.write.component';
+import { OrderFieldPropsComponent } from './props/order-field.props.component';
 
 const UOF_MODULES = [
   UofxFormFieldBaseModule,
@@ -55,15 +57,18 @@ const EMP_SERVICES = [
     NorthWindService,
     ...EMP_SERVICES,
   ],
-  declarations: [],
+  declarations: [
+    OrderFieldWriteComponent,
+    OrderFieldPropsComponent
+  ],
   exports: []
 })
 export class OrderFieldModule {
   static comp = {
-    props: null /* TODO: 加入 props component, YourPropsComponent */,
-    design: null /* TODO: 加入 design component, YourDesignComponent */,
-    write: null /* TODO: 加入 write component, YourWriteComponent */,
-    view: null /* TODO: 加入 view component, YourViewComponent */,
-    print: null /* TODO: 加入 print component, YourPrintComponent */
+    props: OrderFieldPropsComponent /* TODO: 加入 props component, YourPropsComponent */,
+    design: OrderFieldWriteComponent /* TODO: 加入 design component, YourDesignComponent */,
+    write: OrderFieldWriteComponent /* TODO: 加入 write component, YourWriteComponent */,
+    view: OrderFieldWriteComponent /* TODO: 加入 view component, YourViewComponent */,
+    print: OrderFieldWriteComponent /* TODO: 加入 print component, YourPrintComponent */
   }
 }
